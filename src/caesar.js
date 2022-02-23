@@ -8,14 +8,14 @@ const caesarModule = (function () {
   function shiftCheck(num) {
     // check validity of shift value; return false if it meets
     // invalidating criteria; otherwise return true.
-    const result = !(!num || num === 0 || num > 25 || num < -25);
-    console.log(result);
-    return result;
+    return !(!num || num === 0 || num > 25 || num < -25);
   }
 
   function caesar(input, shift, encode = true) {
     try {
       if (!shiftCheck(shift)) throw `${shift} is not a valid number.`;
+      if (!input) throw `Please enter a message to encode.`;
+      if (!/[a-zA-Z]/.test(input)) throw `'${input}' is not a valid message. Please include letters.`;
     } catch (error) {
       console.log(error);
       return false;

@@ -32,6 +32,10 @@ describe('caesar', () => {
             const actual = caesar('', 3);
             expect(actual).to.be.false;
         });
+        it ('should return false if the input string contains no letters', () => {
+            const actual = caesar('11!:568', 3);
+            expect(actual).to.be.false;
+        });
     });
     describe('outputs a properly-shifted string according to input', () => {
         it('should return a string of equivalent length to the given input', () => {
@@ -55,6 +59,12 @@ describe('caesar', () => {
             const str = 'efghlmnop';
             const actual = caesar(str, -2);
             const expected = 'cdefjklmn';
+            expect(actual).to.equal(expected);
+        });
+        it('should wrap around to the other end of the alphabet if the shift surpasses it', () => {
+            const str = 'tuvwxyz';
+            const actual = caesar(str, 3);
+            const expected = 'wxyzabc';
             expect(actual).to.equal(expected);
         });
     });
