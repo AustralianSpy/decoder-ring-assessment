@@ -1,8 +1,3 @@
-// Please refrain from tampering with the setup code provided here,
-// as the index.html and test files rely on this setup to work properly.
-// Only add code (helper methods, variables, etc.) within the scope
-// of the anonymous function on line 6
-
 const caesarModule = (function () {
   
   function shiftCheck(num) {
@@ -39,6 +34,10 @@ const caesarModule = (function () {
         result += char;
       } else {
         code += shift;
+
+        // check if surpassed the bounds of alphabet; wrap if needed.
+        if (code > 122) code = (code-26);
+        if (code < 97) code = (code+26);
         char = String.fromCharCode(code);
         result += char;
       }
