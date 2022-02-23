@@ -81,5 +81,5 @@ describe('caesar', () => {
             const expected = 'abcdefg';
             expect(actual).to.equal(expected);
         });
-    })
+    });
 });
