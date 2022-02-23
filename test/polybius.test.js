@@ -8,7 +8,7 @@ describe('polybius', () => {
             expect(actual).to.be.false;
         });
         it('should return false if the input contains no letters when set to encode', () => {
-            const actual = polybius('11!:568', true);
+            const actual = polybius('11!:56', true);
             expect(actual).to.be.false;
         });
         it('should return false if the input contains no numbers when set to decode', () => {

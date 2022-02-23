@@ -3,6 +3,7 @@ const polybiusModule = (function () {
 
   function polybius(input, encode = true) {
     let alphabet = 'stuvwxyzabcdefghiklmnopqr';
+    
   }
 
   return {
