@@ -52,7 +52,7 @@ describe('caesar', () => {
         it('should ignore all nonalphabetic characters', () => {
             const str = 'a:b!c,d? hello.'
             const actual = caesar(str, 2);
-            const expected = 'c:d!e,f? jgnnq';
+            const expected = 'c:d!e,f? jgnnq.';
             expect(actual).to.equal(expected);
         });
         it('should shift characters to the left if a negative input is given', () => {

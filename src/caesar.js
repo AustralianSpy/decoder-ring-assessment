@@ -35,11 +35,16 @@ const caesarModule = (function () {
       let char = lowerInput[i];
       let code = char.charCodeAt(0);
       
-      char = String.fromCharCode(code + shift);
-      result += char;
+      if (!/[a-z]/.test(char)){
+        result += char;
+      } else {
+        code += shift;
+        char = String.fromCharCode(code);
+        result += char;
+      }
     }
     
-    console.log(result, `Your message has been ${(encode) ? 'encoded' : 'decoded'}!`);
+    console.log(result, `— Your message has been ${(encode) ? 'encoded' : 'decoded'}!`);
     return result;
   }
 
