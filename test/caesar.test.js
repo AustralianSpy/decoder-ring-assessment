@@ -44,9 +44,9 @@ describe('caesar', () => {
             expect(actual).to.have.a.lengthOf(14);
         });
         it('should treat capital letters as lowercase', () => {
-            const str = 'ABCD Hello';
+            const str = 'ABCDHello';
             const actual = caesar(str, 1);
-            const expected = 'bcde ifmmp';
+            const expected = 'bcdeifmmp';
             expect(actual).to.equal(expected);
         });
         it('should ignore all nonalphabetic characters', () => {

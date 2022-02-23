@@ -12,6 +12,8 @@ const caesarModule = (function () {
   }
 
   function caesar(input, shift, encode = true) {
+    
+    // stop function if shift value is invalid, input is empty, or input does not include letters.
     try {
       if (!shiftCheck(shift)) throw `${shift} is not a valid number.`;
       if (!input) throw `Please enter a message to encode.`;
@@ -20,24 +22,20 @@ const caesarModule = (function () {
       console.log(error);
       return false;
     }
-    // lowercase values are at ascii 97-122;
+
+    // check if we are encoding or decoding, adjust shift value.
+    if (!encode) shift = (shift * -1);
+
+    // change message to lowercase, check ascii values 97-122 for letters;
+    // create new character using .fromCharCode();
     const lowerInput = input.toLowerCase();
     let result = '';
 
     for (let i = 0; i < lowerInput.length; i++){
       let char = lowerInput[i];
-      let code = lowerInput.charCodeAt(i);
-      if (code > 122 || code < 97) result += char;
-      if (input > 0) {
-        code += shift;
-        (code > 122) ?
-          char = String.fromCharCode(code - 26) :
-          char = String.fromCharCode(code);
-      } else {
-        (code < 97) ?
-          char = String.fromCharCode(code + 26) :
-          char = String.fromCharCode(code);
-      }
+      let code = char.charCodeAt(0);
+      
+      char = String.fromCharCode(code + shift);
       result += char;
     }
     
