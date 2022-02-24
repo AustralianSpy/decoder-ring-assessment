@@ -11,7 +11,7 @@ const polybiusModule = (function () {
   
   const toDecode = [
     {'11': 'a'}, {'21': 'b'}, {'31': 'c'}, {'41': 'd'}, {'51': 'e'},
-    {'12': 'f'}, {'22': 'g'}, {'32': 'h'}, {'42': ['i', 'j']}, {'52': 'k'},
+    {'12': 'f'}, {'22': 'g'}, {'32': 'h'}, {'42': 'i/j'}, {'52': 'k'},
     {'13': 'l'}, {'23': 'm'}, {'33': 'n'}, {'43': 'o'}, {'53': 'n'},
     {'14': 'q'}, {'24': 'r'}, {'34': 's'}, {'44': 't'}, {'54': 'u'},
     {'15': 'v'}, {'25': 'w'}, {'35': 'x'}, {'45': 'y'}, {'55': 'z'},
@@ -34,7 +34,7 @@ const polybiusModule = (function () {
     input = input.toLowerCase();
     let result = '';
 
-    // if the message is being encoded into numbers:
+    // if the message is being ENCODED from LETTERS TO NUMBERS:
     if (encode) {
       for (let i = 0; i < input.length; i++){
         const char = input[i];
@@ -48,12 +48,17 @@ const polybiusModule = (function () {
       }
     }
 
-    // if the message is being decoded from numbers to letters:
+    /*
+      if the message is being DECODED from NUMBERS TO LETTERS:
+      create number pair, check if special character needs preserving
+      in first index; if it does, concat that character to result then
+      step backwards to avoid counting on next pass.
+    */
     if (!encode){
       for (let i = 0; i < input.length - 1; i+=2){
         const num = input[i] + input[i+1];
-        if (!/[0-9]/g.test(num)){     // preserve special characters.
-          result += num;
+        if (!/[0-9]/g.test(num[0])){     // preserve special characters.
+          result += num[0];
           i--;
         } else {
           const cipher = toDecode.find(pair => Object.keys(pair)[0] === num);
@@ -63,7 +68,7 @@ const polybiusModule = (function () {
       }
     }
 
-    console.log(result)
+    console.log(result, `— Your message has been ${(encode) ? 'encoded' : 'decoded'}!`)
     return result;
   }
 
