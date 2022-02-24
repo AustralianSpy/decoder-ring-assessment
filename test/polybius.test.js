@@ -23,24 +23,24 @@ describe('polybius', () => {
     describe('outputs a ciphered string according to the input', () => {
         it('should treat capital letters as lowercase', () => {
             const actual = polybius('ABCDHello');
-            const expected = '242531324133444452';
+            const expected = '112131413251131343';
             expect(actual).to.equal(expected);
         });
         it('should ignore all nonalphabetic characters', () => {
             const actual = polybius('abcd hello');
-            const expected = '24253132  4133444452';
+            const expected = '11213141 3251131343';
             expect(actual).to.equal(expected);
         });
     });
     describe('it should encode and decode according to the boolean value', () => {
         it('should return a string of numbers, spaces, and symbols when encode is set to true', () => {
             const actual = polybius('aBcD Hello', true);
-            const expected = '24253132 4133444452'
+            const expected = '11213141 3251131343'
             expect(actual).to.not.match(/[a-zA-Z]/);
             expect(actual).to.equal(expected);
         });
         it('should return a string of letters, spaces, and symbols when encode is set to false', () => {
-            const actual = polybius('24253132 4133444452', false);
+            const actual = polybius('11213141 3251131343', false);
             const expected = 'abcd hello';
             expect(actual).to.not.match(/[0-9]/);
             expect(actual).to.equal(expected);
