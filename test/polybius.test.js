@@ -16,7 +16,7 @@ describe('polybius', () => {
             expect(actual).to.be.false;
         });
         it('should return false if the length of all numbers inputted is odd when set to decode', () => {
-            const actual = polybius('24253132  4133444452', false);
+            const actual = polybius('24253132  413344445', false);
             expect(actual).to.be.false;
         })
     });
@@ -33,14 +33,14 @@ describe('polybius', () => {
         });
     });
     describe('it should encode and decode according to the boolean value', () => {
-        it('should return a string of numbers, spaces, and symbols when encode is set to false', () => {
-            const actual = polybius('aBcD Hello');
-            const expected = '24253132  4133444452'
+        it('should return a string of numbers, spaces, and symbols when encode is set to true', () => {
+            const actual = polybius('aBcD Hello', true);
+            const expected = '24253132 4133444452'
             expect(actual).to.not.match(/[a-zA-Z]/);
             expect(actual).to.equal(expected);
         });
-        it('should return a string of letters, spaces, and symbols when encode is set to true', () => {
-            const actual = polybius('24253132  4133444452');
+        it('should return a string of letters, spaces, and symbols when encode is set to false', () => {
+            const actual = polybius('24253132 4133444452', false);
             const expected = 'abcd hello';
             expect(actual).to.not.match(/[0-9]/);
             expect(actual).to.equal(expected);
