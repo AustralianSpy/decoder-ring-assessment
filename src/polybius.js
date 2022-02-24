@@ -38,7 +38,7 @@ const polybiusModule = (function () {
     if (encode) {
       for (let i = 0; i < input.length; i++){
         const char = input[i];
-        if (!/[a-z]/.test(char)){     // preserve special characters.
+        if (!/[a-z]/g.test(char)){     // preserve special characters.
           result += char;
         } else {
           const cipher = toEncode.find(pair => Object.keys(pair)[0] === char);
@@ -50,7 +50,17 @@ const polybiusModule = (function () {
 
     // if the message is being decoded from numbers to letters:
     if (!encode){
-
+      for (let i = 0; i < input.length - 1; i+=2){
+        const num = input[i] + input[i+1];
+        if (!/[0-9]/g.test(num)){     // preserve special characters.
+          result += num;
+          i--;
+        } else {
+          const cipher = toDecode.find(pair => Object.keys(pair)[0] === num);
+          const char = cipher[num];
+          result += char;
+        }
+      }
     }
 
     console.log(result)
