@@ -1,7 +1,6 @@
 const substitutionModule = (function () {
 
-  // helper function to check for duplicate characters in
-  // inputted alphabet.
+  // helper function to check for duplicate characters in inputted alphabet.
   function checkDuplicates (alphabet){
     let str = '';
     let areDuplicates = false;
@@ -28,8 +27,11 @@ const substitutionModule = (function () {
       console.log(error);
       return false;
     }
+    // alphabets for reference.
     const standard = 'abcdefghijklmnopqrstuvwxyz'.split('');
     const cipher = alphabet.split('');
+    
+    // ignore capital-letters, initialize variable to store result.
     let result = '';
     input = input.toLowerCase();
 
@@ -40,7 +42,7 @@ const substitutionModule = (function () {
           result += char;
         } else {
           const index = standard.findIndex(letter => letter === char);
-          char = cipher[index];
+          char = cipher[index];   // use index within standard alphabet to find cipher alphabet value.
           result += char;
         }
       }
@@ -53,7 +55,7 @@ const substitutionModule = (function () {
           result += char;
         } else {
           const index = cipher.findIndex(letter => letter === char);
-          char = standard[index];
+          char = standard[index];   // use index within cipher alphabet to find standard alphabet value.
           result += char;
         }
       }

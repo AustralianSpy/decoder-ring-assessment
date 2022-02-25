@@ -65,8 +65,8 @@ describe('substitution', () => {
         });
         it('should treat capital letters as lowercase', () => {
             const alph = 'gxcfnkajvuoqywmietrpzlshbd';
-            const actual = substitution('ABCDHello', alph, false);
-            const expected = 'gxcfjnqqm';
+            const actual = substitution('GXCfjnQQm', alph, false);
+            const expected = 'abcdhello';
             expect(actual).to.equal(expected);
         });
         it('should preserve all nonalphabetic characters', () => {
